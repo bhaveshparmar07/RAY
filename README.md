@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Null Terminus
 
-## Getting Started
+Null Terminus is a high-performance, award-tier personal portfolio designed for a security researcher. It features a seamless, multi-layered "descent" navigation experience with interactive 3D elements and cinematic effects.
 
-First, run the development server:
+## Tech Stack
+- Next.js (App Router)
+- React
+- TypeScript
+- Tailwind CSS v4
+- React Three Fiber / Drei (Three.js)
+- GSAP & Lenis (Smooth Scrolling)
 
+## Setup
+
+1. Install dependencies:
+```bash
+npm install
+```
+
+2. Run the development server:
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## How to add a new CVE case file
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Open `data/cves.ts`.
+2. Add a new `CVEEntry` object to the `CVE_DATA` array.
+3. Fields to fill:
+   - `id`: The CVE ID (e.g., 'CVE-2024-12345')
+   - `title`: Short title of the vulnerability
+   - `target`: The affected system/software (e.g., 'Acme CMS')
+   - `targetVersion`: Version string (e.g., 'v3.2.1')
+   - `cwe`: The CWE ID (e.g., 'CWE-89')
+   - `cweLabel`: The CWE name (e.g., 'SQL Injection')
+   - `vulnClass`: Class category ('XSS', 'SQLi', 'CSRF', 'IDOR', 'SSRF', 'RCE', 'BAC', 'AuthBypass', 'Other')
+   - `cvss`: CVSS base score (e.g., 9.8)
+   - `cvssVector`: CVSS base vector (e.g., 'CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H')
+   - `severity`: Severity level ('critical', 'high', 'medium', 'low')
+   - `status`: Patch status ('patched', 'unpatched', 'disputed')
+   - `coordinates`: Spatial coordinate on the radar map `{ x: 0-1, y: 0-1, cluster: 'Web Apps' | 'APIs' | 'Infrastructure' | 'Auth' }`
+   - `dates`: `{ found, reported, patched?, disclosed }`
+   - `summary`: Short summary text
+   - `rootCause`: Technical root cause detail
+   - `affectedVersions`: Affected version description string
+   - `chain`: Exploit timeline steps list `[ { step: 1, action: 'Recon', detail: '...' } ]`
+   - `outcome`: Exploit resolution outcome text
+   - `references`: Links array (e.g., MITRE, NVD URLs)
 
-## Learn More
+## Customization
 
-To learn more about Next.js, take a look at the following resources:
+- To update personal details, change `SITE.handle`, `SITE.role`, and links in `lib/site.ts` (this changes the handle across the entire page, including metadata and stamps).
+- The Watchmaker About copy can be updated in `content/about.ts`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Deploy easily to Vercel:
 
-## Deploy on Vercel
+```bash
+npm i -g vercel
+vercel
+```
+Alternatively, connect your GitHub repository directly in the Vercel dashboard.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Accessibility and Performance
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project implements `ReducedMotionProvider` for accessibility, gracefully disabling animations. It uses dynamic imports for heavy 3D elements, adapting particle counts based on device capability to maintain 60FPS.
+
+## License
+MIT
