@@ -21,24 +21,24 @@ export default function Layer2_PublicationsCerts() {
             <div className="inline-flex items-center gap-2 px-3 py-1 mb-2 rounded-full border border-[#8A5CF6]/30 bg-[#8A5CF6]/10">
               <span className="w-1.5 h-1.5 rounded-full bg-[#8A5CF6]" />
               <span className="font-mono text-xs text-[#8A5CF6] tracking-widest uppercase font-bold">
-                LAYER_02.8 // VERIFIED_CREDENTIALS
+                CREDENTIALS // RESEARCH OUTPUT & ARSENAL
               </span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
-              Publications, Certifications & Tooling
+              Research Output, Credentials & Tooling
             </h2>
             <p className="font-mono text-xs sm:text-sm text-[#888888] mt-1">
-              Peer-reviewed research papers, industry security credentials, and open-source offensive tools.
+              Peer-reviewed research publications, verified offensive security certifications, and engineering projects.
             </p>
           </div>
 
           {/* Tab Selector */}
           <div className="flex flex-wrap gap-2 font-mono text-xs">
             {[
-              { key: 'publications', label: 'PUBLICATIONS (2)' },
+              { key: 'publications', label: 'RESEARCH PAPERS (2)' },
               { key: 'certifications', label: 'CERTIFICATIONS (3)' },
               { key: 'projects', label: 'SECURITY TOOLS (4)' },
-              { key: 'achievements', label: 'HONOURS (3)' },
+              { key: 'achievements', label: 'HONOURS & BOOTCAMPS (3)' },
             ].map((tab) => (
               <button
                 key={tab.key}
@@ -81,7 +81,7 @@ export default function Layer2_PublicationsCerts() {
                   </h3>
 
                   <div className="font-mono text-xs text-[#38BDF8] mb-4">
-                    {pub.journal}
+                    {pub.venue || pub.journal}
                     {pub.doi && (
                       <span className="block text-[11px] text-[#888888] mt-0.5">
                         DOI: {pub.doi}
@@ -250,13 +250,25 @@ export default function Layer2_PublicationsCerts() {
                     {ach.title}
                   </h3>
 
-                  <p className="font-mono text-xs text-[#38BDF8] mb-3">
-                    {ach.organization}
-                  </p>
+                  <div className="font-mono text-xs text-[#38BDF8] mb-3 flex items-center justify-between">
+                    <span>{ach.organization}</span>
+                    {ach.location && <span className="text-[#888888]">{ach.location}</span>}
+                  </div>
 
-                  <p className="text-xs text-[#AAAAAA] leading-relaxed">
+                  <p className="text-xs text-[#AAAAAA] leading-relaxed mb-4">
                     {ach.description}
                   </p>
+
+                  {ach.details && (
+                    <div className="pt-3 border-t border-white/10 space-y-1.5 font-mono text-[11px] text-[#CCCCCC]">
+                      {ach.details.map((detail, dIdx) => (
+                        <div key={dIdx} className="flex items-start gap-1.5">
+                          <span className="text-[#C8A24B] shrink-0">▸</span>
+                          <span className="leading-snug">{detail}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             ))}

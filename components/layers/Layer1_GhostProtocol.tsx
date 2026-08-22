@@ -81,7 +81,7 @@ export default function Layer1_GhostProtocol() {
             onMouseEnter={playHover}
             className="px-6 py-3 bg-[#8A5CF6] hover:bg-[#7c4def] text-white font-bold tracking-wider uppercase rounded-sm shadow-[0_0_20px_rgba(138,92,246,0.3)] transition-all duration-300 flex items-center gap-2 group"
           >
-            <span>Examine CVE-2026-16577</span>
+            <span>VIEW CVE RECORD</span>
             <span className="group-hover:translate-x-1 transition-transform">→</span>
           </a>
 
@@ -91,7 +91,7 @@ export default function Layer1_GhostProtocol() {
             onMouseEnter={playHover}
             className="px-6 py-3 border border-white/20 hover:border-white/50 bg-black/40 text-[#CCCCCC] hover:text-white tracking-wider uppercase rounded-sm transition-all duration-300 flex items-center gap-2"
           >
-            <span>Research Lab & Philosophy</span>
+            <span>Research Background & Lab</span>
           </a>
 
           <a
@@ -100,7 +100,7 @@ export default function Layer1_GhostProtocol() {
             onMouseEnter={playHover}
             className="px-6 py-3 border border-white/20 hover:border-[#38BDF8]/60 bg-black/40 text-[#CCCCCC] hover:text-[#38BDF8] tracking-wider uppercase rounded-sm transition-all duration-300"
           >
-            <span>Publications & Certs</span>
+            <span>Publications & Credentials</span>
           </a>
         </div>
       </div>
@@ -114,12 +114,12 @@ export default function Layer1_GhostProtocol() {
             <span className="text-[10px] text-[#888888] uppercase">Published CVE</span>
           </div>
           <div className="flex flex-col border-l border-white/10">
-            <span className="text-xl md:text-2xl font-bold text-[#38BDF8]">30,000+</span>
-            <span className="text-[10px] text-[#888888] uppercase">Installs Secured</span>
+            <span className="text-xl md:text-2xl font-bold text-[#38BDF8]">30K+</span>
+            <span className="text-[10px] text-[#888888] uppercase">Affected Installs</span>
           </div>
           <div className="flex flex-col border-l border-white/10">
-            <span className="text-xl md:text-2xl font-bold text-[#C8A24B]">0-DAY</span>
-            <span className="text-[10px] text-[#888888] uppercase">Logic Triage</span>
+            <span className="text-xl md:text-2xl font-bold text-[#C8A24B]">LOGIC</span>
+            <span className="text-[10px] text-[#888888] uppercase">Vulnerability</span>
           </div>
           <div className="flex flex-col border-l border-white/10">
             <span className="text-xl md:text-2xl font-bold text-[#8A5CF6]">VERIFIED</span>

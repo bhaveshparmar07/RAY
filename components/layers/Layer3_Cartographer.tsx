@@ -97,15 +97,12 @@ export default function Layer3_Cartographer({ onSelectCVE }: Layer3CartographerP
             <div className="inline-flex items-center gap-2 px-3 py-1 mb-2 rounded-full border border-[#8A5CF6]/30 bg-[#8A5CF6]/10">
               <span className="w-1.5 h-1.5 rounded-full bg-[#8A5CF6]" />
               <span className="font-mono text-[10px] md:text-xs text-[#5b24c6] font-bold tracking-widest uppercase">
-                LAYER_03 // VULNERABILITY_RESEARCH
+                RESEARCH // PUBLIC VULNERABILITY DISCLOSURE
               </span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
               Published CVEs & Vulnerability Radar
             </h2>
-            <p className="font-mono text-xs text-[#555555] mt-1">
-              Responsible disclosure tracking, root cause analyses, and end-to-end exploit chains.
-            </p>
           </div>
 
           {/* Severity Filters */}
@@ -121,8 +118,8 @@ export default function Layer3_Cartographer({ onSelectCVE }: Layer3CartographerP
                 onMouseEnter={playHover}
                 className={`px-3 py-1 rounded-sm border uppercase transition-all cursor-pointer ${
                   selectedSeverity === sev
-                    ? 'bg-[#0A0B0D] text-[#D9CBB0] border-[#0A0B0D] font-bold shadow-sm'
-                    : 'border-[#0A0B0D]/25 bg-black/5 text-[#0A0B0D]/80 hover:border-[#0A0B0D] hover:text-[#0A0B0D]'
+                    ? 'bg-[#0A0B0D] text-[#D9CBB0] border-[#0A0B0D] font-bold shadow-md'
+                    : 'border-[#0A0B0D]/20 text-[#0A0B0D]/70 hover:border-[#0A0B0D] hover:text-[#0A0B0D] bg-white/40'
                 }`}
               >
                 {sev}
@@ -131,34 +128,37 @@ export default function Layer3_Cartographer({ onSelectCVE }: Layer3CartographerP
           </div>
         </div>
 
-        {/* 2-Column Grid: Featured Spotlight Card & Interactive Radar Map */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-          {/* Left Column: Featured Case File Spotlight (7 Cols) */}
+        {/* 2-Column Side-by-Side: Left = Spotlight Card, Right = Radar Visualizer */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          {/* Spotlight Case Card */}
           {primaryCVE && (
-            <div className="lg:col-span-7 flex flex-col justify-between p-6 sm:p-8 rounded-sm border border-[#0A0B0D]/20 bg-[#ECE5D4] shadow-md">
-              <div className="space-y-4">
-                <div className="flex flex-wrap items-center gap-2 font-mono text-xs">
-                  <span className="px-2.5 py-0.5 bg-[#4ADE80]/20 text-[#0F602B] font-bold border border-[#4ADE80]/50 rounded-sm">
-                    CVSS {primaryCVE.cvss.toFixed(1)} LOW
-                  </span>
-                  <span className="px-2.5 py-0.5 bg-[#0A0B0D]/10 font-bold rounded-sm text-[#0A0B0D]">
-                    {primaryCVE.id}
-                  </span>
-                  <span className="px-2.5 py-0.5 bg-[#8A5CF6]/15 text-[#5b24c6] font-bold rounded-sm">
-                    {primaryCVE.cwe} ({primaryCVE.cweLabel})
-                  </span>
-                  <span className="px-2 py-0.5 bg-amber-500/15 text-amber-900 font-bold rounded-sm">
-                    30,000+ INSTALLS
-                  </span>
-                </div>
+            <div className="lg:col-span-7 bg-[#E8DFC8] border border-[#0A0B0D]/20 rounded-sm p-6 sm:p-8 shadow-xl relative overflow-hidden flex flex-col justify-between">
+              <div className="space-y-6">
+                {/* Badge Row */}
+                <div className="space-y-3">
+                  <div className="flex flex-wrap items-center gap-2 font-mono text-xs">
+                    <span className="px-2.5 py-0.5 bg-[#4ADE80]/20 text-[#0F602B] font-bold border border-[#4ADE80]/50 rounded-sm">
+                      CVSS {primaryCVE.cvss.toFixed(1)} LOW
+                    </span>
+                    <span className="px-2.5 py-0.5 bg-[#0A0B0D]/10 font-bold rounded-sm text-[#0A0B0D]">
+                      {primaryCVE.id}
+                    </span>
+                    <span className="px-2.5 py-0.5 bg-[#8A5CF6]/15 text-[#5b24c6] font-bold rounded-sm">
+                      {primaryCVE.cwe} ({primaryCVE.cweLabel})
+                    </span>
+                    <span className="px-2 py-0.5 bg-amber-500/15 text-amber-900 font-bold rounded-sm">
+                      30K+ PLUGIN INSTALLS
+                    </span>
+                  </div>
 
-                <div>
-                  <span className="font-mono text-[10px] text-[#666666] block uppercase tracking-wider">
-                    TARGET: {primaryCVE.target} {primaryCVE.targetVersion}
-                  </span>
-                  <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-[#0A0B0D] mt-1">
-                    {primaryCVE.title}
-                  </h3>
+                  <div>
+                    <span className="font-mono text-[10px] text-[#666666] block uppercase tracking-wider">
+                      TARGET: {primaryCVE.target} {primaryCVE.targetVersion}
+                    </span>
+                    <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-[#0A0B0D] mt-1">
+                      {primaryCVE.title}
+                    </h3>
+                  </div>
                 </div>
 
                 <p className="text-xs sm:text-sm text-[#444444] leading-relaxed">
@@ -186,7 +186,7 @@ export default function Layer3_Cartographer({ onSelectCVE }: Layer3CartographerP
                   onMouseEnter={playHover}
                   className="flex-1 px-6 py-3 bg-[#0A0B0D] hover:bg-[#222222] text-[#F7F5EE] font-mono text-xs font-bold uppercase tracking-wider rounded-sm transition-all cursor-pointer flex items-center justify-center gap-2 shadow-lg"
                 >
-                  <span className="text-[#F7F5EE] font-bold">Launch Digital Autopsy & PoC</span>
+                  <span className="text-[#F7F5EE] font-bold">Read Vulnerability Report & PoC</span>
                   <span className="text-base">🔬</span>
                 </button>
 

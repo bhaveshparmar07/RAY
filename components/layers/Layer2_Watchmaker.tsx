@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import CharacterScramble from '@/components/effects/CharacterScramble';
 import RedactionBar from '@/components/effects/RedactionBar';
-import { ABOUT_TITLE, ABOUT_PARAGRAPHS, ABOUT_PHILOSOPHY } from '@/content/about';
+import { ABOUT_TITLE, ABOUT_BIO, ABOUT_PARAGRAPHS, ABOUT_PHILOSOPHY } from '@/content/about';
 import { RESEARCH_DOMAINS, ResearchDomain } from '@/content/research';
 import { useReducedMotion } from '@/components/providers/ReducedMotionProvider';
 import { useSound } from '@/lib/useSound';
@@ -62,30 +62,45 @@ export default function Layer2_Watchmaker({
     >
       <div className="max-w-6xl w-full mx-auto relative z-10 flex flex-col items-center">
         {/* Section Header */}
-        <div className="mb-16 text-center max-w-3xl">
+        <div className="mb-12 text-center max-w-3xl">
           <div className="inline-flex items-center gap-2 px-3 py-1 mb-3 rounded-full border border-[#C8A24B]/30 bg-[#C8A24B]/10">
             <span className="w-1.5 h-1.5 rounded-full bg-[#C8A24B]" />
-            <span className="font-mono text-xs text-[#C8A24B] tracking-widest uppercase">
-              LAYER_02 // FORENSIC_RESEARCH_LAB
+            <span className="font-mono text-xs text-[#C8A24B] tracking-widest uppercase font-bold">
+              ABOUT // RESEARCH BACKGROUND & PRINCIPLES
             </span>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-bone mb-4">
-            The Clockwork of Integrity
+            The Architecture of Inquiry
           </h2>
           <p className="font-mono text-xs sm:text-sm text-[#888888] max-w-xl mx-auto italic">
             "{ABOUT_PHILOSOPHY}"
           </p>
         </div>
 
-        {/* Mechanism Status & Creed Inspection Trigger */}
+        {/* Factual Biographical Summary Card */}
+        <div className="w-full max-w-4xl mb-12 p-6 md:p-8 rounded-sm border border-white/15 bg-black/60 backdrop-blur-md shadow-xl">
+          <div className="flex items-center gap-2 font-mono text-xs text-[#8A5CF6] mb-3">
+            <span className="w-2 h-2 rounded-full bg-[#8A5CF6] animate-pulse" />
+            <span className="uppercase tracking-wider font-bold">BIOGRAPHICAL BACKGROUND // BHAVESHKUMAR PARMAR (RAY)</span>
+          </div>
+          <p className="text-sm md:text-base text-[#D0D0D0] leading-relaxed mb-4">
+            {ABOUT_BIO}
+          </p>
+          <div className="pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 font-mono text-xs text-[#888888]">
+            <span>EDUCATION: M.Sc. Cybersecurity & Forensic Science (Gujarat University)</span>
+            <span className="text-[#38BDF8]">SPECIALIZATION: Vulnerability Research & Malware Analysis</span>
+          </div>
+        </div>
+
+        {/* Creed Inspection Trigger */}
         <div className="w-full mb-16 p-6 md:p-8 rounded-sm border border-[#C8A24B]/30 bg-black/60 backdrop-blur-md flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex flex-col gap-1 text-center md:text-left">
             <div className="flex items-center justify-center md:justify-start gap-2 font-mono text-xs text-[#C8A24B]">
               <span className="w-2 h-2 rounded-full bg-[#C8A24B] animate-ping" />
-              <span>SYSTEMS_CORE // WATCHMAKER_MECHANISM</span>
+              <span className="font-bold">INVESTIGATIVE METHODOLOGY & PHILOSOPHY</span>
             </div>
             <p className="text-sm text-[#CCCCCC]">
-              Inspect the core philosophy report and the breakdown of investigative principles.
+              Read the research philosophy, recon creed, and operational standards.
             </p>
           </div>
 
@@ -93,9 +108,9 @@ export default function Layer2_Watchmaker({
             <button
               onClick={handleInspect}
               onMouseEnter={playHover}
-              className="px-6 py-3 border border-[#C8A24B] bg-[#C8A24B]/10 hover:bg-[#C8A24B]/20 text-[#C8A24B] font-mono text-xs tracking-widest uppercase transition-all duration-300 rounded-sm cursor-pointer shadow-[0_0_15px_rgba(200,162,75,0.15)] hover:shadow-[0_0_25px_rgba(200,162,75,0.3)] flex items-center gap-2"
+              className="px-6 py-3 border border-[#C8A24B] bg-[#C8A24B]/10 hover:bg-[#C8A24B]/20 text-[#C8A24B] font-mono text-xs tracking-widest uppercase transition-all duration-300 rounded-sm cursor-pointer shadow-[0_0_15px_rgba(200,162,75,0.15)] hover:shadow-[0_0_25px_rgba(200,162,75,0.3)] flex items-center gap-2 font-bold"
             >
-              <span>{isCreedOpen ? 'Viewing Creed Report' : 'Inspect Broken Gear'}</span>
+              <span>{isCreedOpen ? 'Viewing Methodology' : 'Read Investigative Creed'}</span>
               <span>⚙</span>
             </button>
           </div>
@@ -119,8 +134,8 @@ export default function Layer2_Watchmaker({
             </button>
 
             <div className="mb-6 border-b border-[#C8A24B]/20 pb-4">
-              <span className="font-mono text-xs text-[#C8A24B] block mb-1">
-                CLASSIFIED DOSSIER // MANIFESTO
+              <span className="font-mono text-xs text-[#C8A24B] block mb-1 uppercase tracking-wider font-bold">
+                OPERATIONAL PRINCIPLES // ETHICAL RECONNAISSANCE
               </span>
               <h3 id="creed-title" className="text-2xl font-bold tracking-tight text-bone">
                 {ABOUT_TITLE}
@@ -137,10 +152,10 @@ export default function Layer2_Watchmaker({
 
             <div className="mt-8 flex justify-between items-end border-t border-[#C8A24B]/20 pt-4 font-mono text-xs text-white/40">
               <div>
-                <span>STATUS: INSPECTION_VERIFIED</span>
-                <span className="block">INTEGRITY_INDEX: 100%</span>
+                <span>STATUS: EMPIRICALLY_VERIFIED</span>
+                <span className="block">STANDARDS: RESPONSIBLE_DISCLOSURE</span>
               </div>
-              <span className="text-[#C8A24B]">CORE_CREED_ACTIVE</span>
+              <span className="text-[#C8A24B] font-bold">ACTIVE_DISCLOSURE</span>
             </div>
           </div>
         )}
