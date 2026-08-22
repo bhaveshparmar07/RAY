@@ -41,14 +41,6 @@ export default function Layer1_GhostProtocol() {
 
       {/* Main Hero Center Content */}
       <div className="z-10 flex flex-col items-center text-center my-auto max-w-4xl px-4">
-        {/* Sub-header badge */}
-        <div className="mb-6 inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 backdrop-blur-md">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#8A5CF6]" />
-          <span className="font-mono text-xs text-[#CCCCCC] tracking-widest uppercase">
-            SECURITY RESEARCH & FORENSICS LAB
-          </span>
-        </div>
-
         {/* Big Handle Title */}
         <h1 className="mb-3 text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold tracking-tighter text-[#ECECEC]">
           <CharacterScramble text={SITE.handle} />
