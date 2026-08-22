@@ -95,7 +95,7 @@ export const ARSENAL_TOOLKIT: ToolCategory[] = [
     category: 'STATIC & BINARY REVERSE ENGINEERING',
     items: [
       { name: 'Ghidra', type: 'NSA Decompiler & Analysis Suite', proficiency: 'ADVANCED' },
-      { name: 'IDA Pro / x64dbg', type: 'Interactive Disassembler & Debugger', proficiency: 'EXPERT' },
+      { name: 'IDA Pro / x64dbg', type: 'Interactive Disassembler & Debugger', proficiency: 'ADVANCED' },
       { name: 'PEStudio & DIE', type: 'Executable Header & Entropy Triage', proficiency: 'ADVANCED' },
       { name: 'Binary Ninja', type: 'Intermediate Representation Analysis', proficiency: 'PROFICIENT' },
     ],
@@ -103,9 +103,9 @@ export const ARSENAL_TOOLKIT: ToolCategory[] = [
   {
     category: 'DYNAMIC ANALYSIS & INTERCEPTION',
     items: [
-      { name: 'Burp Suite Professional', type: 'HTTP/WebSocket Protocol Interception', proficiency: 'EXPERT' },
+      { name: 'Burp Suite Professional', type: 'HTTP/WebSocket Protocol Interception', proficiency: 'ADVANCED' },
       { name: 'Frida & Objection', type: 'Dynamic Runtime Instrumentation', proficiency: 'ADVANCED' },
-      { name: 'Wireshark', type: 'Packet & Network Protocol Dissection', proficiency: 'EXPERT' },
+      { name: 'Wireshark', type: 'Packet & Network Protocol Dissection', proficiency: 'ADVANCED' },
       { name: 'Procmon & Sysinternals', type: 'Kernel & Process Call Tracing', proficiency: 'ADVANCED' },
     ],
   },
@@ -114,17 +114,17 @@ export const ARSENAL_TOOLKIT: ToolCategory[] = [
     items: [
       { name: 'Volatility 3', type: 'Advanced Volatile Memory Forensics', proficiency: 'ADVANCED' },
       { name: 'Autopsy & FTK Imager', type: 'Disk Image Extraction & Indexing', proficiency: 'ADVANCED' },
-      { name: 'KAPE & Eric Zimmerman Tools', type: 'Rapid Target Artifact Triage', proficiency: 'EXPERT' },
+      { name: 'KAPE & Eric Zimmerman Tools', type: 'Rapid Target Artifact Triage', proficiency: 'ADVANCED' },
       { name: 'YARA', type: 'Pattern Matching & Malware Rule Engine', proficiency: 'ADVANCED' },
     ],
   },
   {
     category: 'DEVELOPMENT & RESEARCH AUTOMATION',
     items: [
-      { name: 'Python 3', type: 'PoC Exploit Dev & Network Scripting', proficiency: 'EXPERT' },
+      { name: 'Python 3', type: 'PoC Exploit Dev & Network Scripting', proficiency: 'ADVANCED' },
       { name: 'Pwntools', type: 'Rapid Exploit Prototyping Framework', proficiency: 'ADVANCED' },
       { name: 'Bash / PowerShell', type: 'Environment & Tooling Automation', proficiency: 'ADVANCED' },
-      { name: 'Docker & Linux Labs', type: 'Isolated Research Sandboxes', proficiency: 'EXPERT' },
+      { name: 'Docker & Linux Labs', type: 'Isolated Research Sandboxes', proficiency: 'ADVANCED' },
     ],
   },
 ];

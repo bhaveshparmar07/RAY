@@ -71,7 +71,7 @@ export default function Layer2_PublicationsCerts() {
                 <div>
                   <div className="flex justify-between items-start gap-4 mb-3">
                     <span className="font-mono text-[10px] text-[#8A5CF6] uppercase font-bold tracking-wider">
-                      PEER-REVIEWED PAPER
+                      {pub.typeLabel || 'RESEARCH PUBLICATION'}
                     </span>
                     <span className="font-mono text-xs text-[#888888]">{pub.date}</span>
                   </div>

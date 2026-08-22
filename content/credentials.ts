@@ -2,6 +2,7 @@ export interface Publication {
   id: string;
   index: string;
   title: string;
+  typeLabel: string;
   venue: string;
   journal?: string;
   date: string;
@@ -48,6 +49,7 @@ export const RESEARCH_OUTPUTS: Publication[] = [
     id: 'ml-malware-detection-2026',
     index: '01',
     title: 'Machine Learning-Based Malware Detection: A Systematic Review',
+    typeLabel: 'PEER-REVIEWED PAPER',
     venue: 'International Journal of Scientific Research and Engineering Development (IJSCI)',
     date: 'February 2026',
     status: 'PUBLISHED',
@@ -61,12 +63,13 @@ export const RESEARCH_OUTPUTS: Publication[] = [
     id: 'forensic-smartphone-evidence-2026',
     index: '02',
     title: 'Silent Witnesses: The Forensic Handling of Smartphone Evidence at Crime Scenes',
+    typeLabel: 'FIRST-AUTHOR PUBLICATION',
     venue: 'Forensic Science E-Magazine (Vol. 24)',
     date: 'August 2026',
     status: 'PUBLISHED',
     url: 'https://forensicfield.blog/forensic-science-e-magazine-vol-24/',
     summary:
-      'Peer-reviewed first-author publication establishing technical protocols for mobile device digital forensics: volatile memory preservation, Faraday RF isolation, logical/physical acquisition standards, chain-of-custody integrity, and anti-forensics mitigation.',
+      'First-author forensic publication establishing technical protocols for mobile device digital forensics: volatile memory preservation, Faraday RF isolation, logical/physical acquisition standards, chain-of-custody integrity, and anti-forensics mitigation.',
     tags: ['Digital Forensics', 'Mobile Extraction', 'Chain of Custody', 'Incident Response', 'Evidence Preservation'],
   },
 ];
