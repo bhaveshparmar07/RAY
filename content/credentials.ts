@@ -46,8 +46,21 @@ export interface Achievement {
 
 export const RESEARCH_OUTPUTS: Publication[] = [
   {
-    id: 'ml-malware-detection-2026',
+    id: 'comparative-malware-analysis-2026',
     index: '01',
+    title: 'A Comparative Static, Dynamic, and Network Forensic Analysis of Five Malware Families',
+    typeLabel: 'FIRST-AUTHOR PUBLICATION',
+    venue: 'International Journal of Research Publication and Reviews (IJRPR)',
+    date: 'August 25, 2026',
+    status: 'PUBLISHED',
+    url: 'https://ijrpr.com/uploads/V7ISSUE8/IJRPR69149.pdf',
+    summary:
+      'Published first-author research on the comparative forensic analysis of five malware families using static, dynamic, and network-based techniques. Combines binary triage, behavioral analysis, system monitoring, and network traffic analysis to identify indicators and characterize malicious behavior.',
+    tags: ['Malware Analysis', 'Static & Dynamic Triage', 'Network Forensics', 'Behavioral Profiling', 'IoC Extraction'],
+  },
+  {
+    id: 'ml-malware-detection-2026',
+    index: '02',
     title: 'Machine Learning-Based Malware Detection: A Systematic Review',
     typeLabel: 'PEER-REVIEWED PAPER',
     venue: 'International Journal of Scientific Research and Engineering Development (IJSCI)',
@@ -61,7 +74,7 @@ export const RESEARCH_OUTPUTS: Publication[] = [
   },
   {
     id: 'forensic-smartphone-evidence-2026',
-    index: '02',
+    index: '03',
     title: 'Silent Witnesses: The Forensic Handling of Smartphone Evidence at Crime Scenes',
     typeLabel: 'FIRST-AUTHOR PUBLICATION',
     venue: 'Forensic Science E-Magazine (Vol. 24)',

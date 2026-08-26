@@ -35,10 +35,10 @@ export default function Layer2_PublicationsCerts() {
           {/* Tab Selector */}
           <div className="flex flex-wrap gap-2 font-mono text-xs">
             {[
-              { key: 'publications', label: 'RESEARCH PAPERS (2)' },
-              { key: 'certifications', label: 'CERTIFICATIONS (3)' },
-              { key: 'projects', label: 'SECURITY TOOLS (4)' },
-              { key: 'achievements', label: 'HONOURS & BOOTCAMPS (3)' },
+              { key: 'publications', label: `RESEARCH PAPERS (${PUBLICATIONS.length})` },
+              { key: 'certifications', label: `CERTIFICATIONS (${CERTIFICATIONS.length})` },
+              { key: 'projects', label: `SECURITY TOOLS (${SECURITY_PROJECTS.length})` },
+              { key: 'achievements', label: `HONOURS & BOOTCAMPS (${ACHIEVEMENTS.length})` },
             ].map((tab) => (
               <button
                 key={tab.key}
@@ -61,7 +61,7 @@ export default function Layer2_PublicationsCerts() {
 
         {/* Tab 1: Publications */}
         {activeTab === 'publications' && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-[fadeIn_0.3s_ease-out]">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate-[fadeIn_0.3s_ease-out]">
             {PUBLICATIONS.map((pub) => (
               <div
                 key={pub.id}
