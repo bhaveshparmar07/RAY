@@ -108,22 +108,26 @@ export default function Layer1_GhostProtocol() {
       {/* Quick Metrics Bar & ECG Wave */}
       <div className="w-full max-w-6xl z-10 flex flex-col items-center gap-6 mt-8">
         {/* KPI Ticker */}
-        <div className="w-full grid grid-cols-2 sm:grid-cols-4 gap-4 p-4 border border-white/10 bg-black/50 backdrop-blur-md rounded-sm font-mono text-center">
-          <div className="flex flex-col">
-            <span className="text-xl md:text-2xl font-bold text-[#4ADE80]">01</span>
-            <span className="text-[10px] text-[#888888] uppercase">Published CVE</span>
+        <div className="w-full grid grid-cols-2 sm:grid-cols-5 gap-px border border-white/10 bg-white/5 backdrop-blur-md rounded-sm font-mono text-center overflow-hidden">
+          <div className="flex flex-col gap-0.5 py-4 px-3 bg-black/50">
+            <span className="text-xl md:text-2xl font-bold text-[#4ADE80]">04</span>
+            <span className="text-[10px] text-[#888888] uppercase tracking-wider">Published CVEs</span>
           </div>
-          <div className="flex flex-col border-l border-white/10">
+          <div className="flex flex-col gap-0.5 py-4 px-3 bg-black/50 border-l border-white/10">
             <span className="text-xl md:text-2xl font-bold text-[#38BDF8]">30K+</span>
-            <span className="text-[10px] text-[#888888] uppercase">Affected Installs</span>
+            <span className="text-[10px] text-[#888888] uppercase tracking-wider">Plugin Installs</span>
           </div>
-          <div className="flex flex-col border-l border-white/10">
-            <span className="text-xl md:text-2xl font-bold text-[#C8A24B]">LOGIC</span>
-            <span className="text-[10px] text-[#888888] uppercase">Vulnerability</span>
+          <div className="flex flex-col gap-0.5 py-4 px-3 bg-black/50 border-l border-white/10">
+            <span className="text-xl md:text-2xl font-bold text-[#FBBF24]">SSRF · RCE</span>
+            <span className="text-[10px] text-[#888888] uppercase tracking-wider">Vuln Classes</span>
           </div>
-          <div className="flex flex-col border-l border-white/10">
+          <div className="flex flex-col gap-0.5 py-4 px-3 bg-black/50 border-l border-white/10">
+            <span className="text-xl md:text-2xl font-bold text-[#C8A24B]">BAC · BOLA</span>
+            <span className="text-[10px] text-[#888888] uppercase tracking-wider">Auth Findings</span>
+          </div>
+          <div className="flex flex-col gap-0.5 py-4 px-3 bg-black/50 border-l border-white/10">
             <span className="text-xl md:text-2xl font-bold text-[#8A5CF6]">VERIFIED</span>
-            <span className="text-[10px] text-[#888888] uppercase">WPScan / CNA Record</span>
+            <span className="text-[10px] text-[#888888] uppercase tracking-wider">WPScan / NVD</span>
           </div>
         </div>
 
