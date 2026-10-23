@@ -207,7 +207,7 @@ export default function Layer3_Cartographer({ onSelectCVE }: Layer3CartographerP
           <div className="lg:col-span-5 flex flex-col items-center justify-center p-6 rounded-sm border border-[#0A0B0D]/20 bg-[#ECE5D4] shadow-md relative min-h-[380px]">
             <div className="w-full flex justify-between items-center mb-4 font-mono text-[10px] text-[#666666]">
               <span>RADAR_TELEMETRY // SECTOR_SCAN</span>
-              <span className="text-[#8A5CF6] font-bold">1 TARGET ACQUIRED</span>
+              <span className="text-[#8A5CF6] font-bold">{filteredCVEs.length} TARGET{filteredCVEs.length !== 1 ? 'S' : ''} ACQUIRED</span>
             </div>
 
             {/* Radar Scope Frame */}
@@ -254,6 +254,11 @@ export default function Layer3_Cartographer({ onSelectCVE }: Layer3CartographerP
               {filteredCVEs.map((cve) => {
                 const leftPct = `${cve.coordinates.x * 100}%`;
                 const topPct = `${cve.coordinates.y * 100}%`;
+                const pinColor =
+                  cve.severity === 'critical' ? '#EF4444' :
+                  cve.severity === 'high' ? '#F97316' :
+                  cve.severity === 'medium' ? '#FBBF24' :
+                  '#4ADE80';
 
                 return (
                   <div
@@ -273,8 +278,8 @@ export default function Layer3_Cartographer({ onSelectCVE }: Layer3CartographerP
                   >
                     <div className="sonar-ring absolute -inset-3 rounded-full border border-[#8A5CF6] opacity-0 pointer-events-none" />
                     <div className="relative flex items-center justify-center">
-                      <span className="absolute w-5 h-5 rounded-full bg-[#4ADE80]/30 animate-ping pointer-events-none" />
-                      <span className="w-3.5 h-3.5 rounded-full bg-[#4ADE80] border-2 border-[#0A0B0D] shadow-md group-hover:scale-125 transition-transform" />
+                      <span className="absolute w-5 h-5 rounded-full animate-ping pointer-events-none" style={{ backgroundColor: `${pinColor}4D` }} />
+                      <span className="w-3.5 h-3.5 rounded-full border-2 border-[#0A0B0D] shadow-md group-hover:scale-125 transition-transform" style={{ backgroundColor: pinColor }} />
                     </div>
 
                     <div className="absolute left-5 top-1/2 -translate-y-1/2 whitespace-nowrap bg-[#0A0B0D] text-[#EDECE6] px-2.5 py-1 rounded-sm font-mono text-[10px] shadow-xl opacity-95 pointer-events-none border border-white/20">

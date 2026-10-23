@@ -11,6 +11,8 @@ export type VulnClass =
   | 'SSRF'
   | 'RCE'
   | 'BAC'
+  | 'BOLA'
+  | 'PathTraversal'
   | 'AuthBypass'
   | 'Other';
 
