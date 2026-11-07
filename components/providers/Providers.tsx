@@ -6,12 +6,8 @@ import { CursorProvider } from '@/components/providers/CursorProvider';
 import { SmoothScrollProvider } from '@/components/providers/SmoothScrollProvider';
 import { AudioProvider } from '@/components/providers/AudioProvider';
 import SkipLink from '@/components/shared/SkipLink';
-import NavFallback from '@/components/ui/NavFallback';
+import Navbar from '@/components/ui/Navbar';
 import RevealLight from '@/components/cursor/RevealLight';
-import FilmGrain from '@/components/effects/FilmGrain';
-import Scanlines from '@/components/effects/Scanlines';
-import MuteToggle from '@/components/ui/MuteToggle';
-import ThemeToggle from '@/components/ui/ThemeToggle';
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   return (
@@ -21,12 +17,8 @@ export default function Providers({ children }: { children: React.ReactNode }) {
           <CursorProvider>
             <SmoothScrollProvider>
               <SkipLink />
-              <NavFallback />
+              <Navbar />
               <RevealLight />
-              <FilmGrain />
-              <Scanlines />
-              <MuteToggle />
-              <ThemeToggle />
               {children}
             </SmoothScrollProvider>
           </CursorProvider>

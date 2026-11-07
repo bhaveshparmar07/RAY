@@ -8,18 +8,32 @@ interface ThemeContextType {
 }
 
 const ThemeContext = createContext<ThemeContextType>({
-  isLightTheme: true,
+  isLightTheme: false,
   toggleTheme: () => {},
 });
 
 export const useTheme = () => useContext(ThemeContext);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  // Default to Light Mode as requested
-  const [isLightTheme, setIsLightTheme] = useState(true);
+  // Default to Dark-First Cyber-Noir
+  const [isLightTheme, setIsLightTheme] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const saved = localStorage.getItem('ray_theme');
+    if (saved === 'light') {
+      setIsLightTheme(true);
+    }
+  }, []);
 
   const toggleTheme = () => {
-    setIsLightTheme((prev) => !prev);
+    setIsLightTheme((prev) => {
+      const next = !prev;
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('ray_theme', next ? 'light' : 'dark');
+      }
+      return next;
+    });
   };
 
   useEffect(() => {

@@ -1,8 +1,6 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import CharacterScramble from '@/components/effects/CharacterScramble';
-import RedactionBar from '@/components/effects/RedactionBar';
 import { ABOUT_TITLE, ABOUT_BIO, ABOUT_PARAGRAPHS, ABOUT_PHILOSOPHY } from '@/content/about';
 import { RESEARCH_DOMAINS, ResearchDomain } from '@/content/research';
 import { useReducedMotion } from '@/components/providers/ReducedMotionProvider';
@@ -30,23 +28,23 @@ export default function Layer2_Watchmaker({
 
   const handleInspect = () => {
     playSystemError();
-    setIsCreedOpen(true);
-    if (onInspectBrokenGear) {
+    setIsCreedOpen(!isCreedOpen);
+    if (!isCreedOpen && onInspectBrokenGear) {
       onInspectBrokenGear();
     }
   };
 
-  const handleClose = () => {
+  const handleCloseCreed = () => {
     playClick();
     setIsCreedOpen(false);
   };
 
-  // Keyboard navigation listener to close modals on ESC
+  // Keyboard listener to close modals on ESC
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         if (selectedDomain) setSelectedDomain(null);
-        else if (isCreedOpen) handleClose();
+        else if (isCreedOpen) handleCloseCreed();
       }
     };
     window.addEventListener('keydown', handleKeyDown);
@@ -57,195 +55,278 @@ export default function Layer2_Watchmaker({
     <section
       id="about"
       ref={sectionRef}
-      className="relative min-h-screen w-full flex flex-col items-center justify-start py-24 px-6 md:px-12 overflow-hidden bg-void z-10"
-      aria-label="About and Philosophy"
+      className="relative w-full py-24 sm:py-32 px-4 sm:px-8 md:px-12 z-10"
+      aria-label="About and Research Domains"
     >
-      <div className="max-w-6xl w-full mx-auto relative z-10 flex flex-col items-center">
+      <div className="max-w-6xl w-full mx-auto space-y-24">
         {/* Section Header */}
-        <div className="mb-12 text-center max-w-3xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 mb-3 rounded-full border border-[#C8A24B]/30 bg-[#C8A24B]/10">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#C8A24B]" />
-            <span className="font-mono text-xs text-[#C8A24B] tracking-widest uppercase font-bold">
-              ABOUT // RESEARCH BACKGROUND & PRINCIPLES
+        <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
+          <div className="inline-flex items-center gap-2 px-3 py-1 mb-3 rounded-full border border-violet-500/30 bg-violet-500/10 shadow-[0_0_12px_rgba(139,92,246,0.15)]">
+            <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse" />
+            <span className="font-mono text-xs text-violet-300 tracking-widest uppercase font-bold">
+              01 // RESEARCH BACKGROUND & PRINCIPLES
             </span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-bone mb-4">
+          <h2 className="font-heading text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-[#F1F5F9] mb-4">
             The Architecture of Inquiry
           </h2>
-          <p className="font-mono text-xs sm:text-sm text-[#888888] max-w-xl mx-auto italic">
+          <p className="font-mono text-xs sm:text-sm text-[#94A3B8] max-w-xl mx-auto italic">
             "{ABOUT_PHILOSOPHY}"
           </p>
         </div>
 
-        {/* Factual Biographical Summary Card */}
-        <div className="w-full max-w-4xl mb-12 p-6 md:p-8 rounded-sm border border-white/15 bg-black/60 backdrop-blur-md shadow-xl">
-          <div className="flex items-center gap-2 font-mono text-xs text-[#8A5CF6] mb-3">
-            <span className="w-2 h-2 rounded-full bg-[#8A5CF6] animate-pulse" />
-            <span className="uppercase tracking-wider font-bold">BIOGRAPHICAL BACKGROUND // BHAVESHKUMAR PARMAR (RAY)</span>
-          </div>
-          <p className="text-sm md:text-base text-[#D0D0D0] leading-relaxed mb-4">
-            {ABOUT_BIO}
-          </p>
-          <div className="pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 font-mono text-xs text-[#888888]">
-            <span>EDUCATION: M.Sc. Cybersecurity & Forensic Science (Gujarat University)</span>
-            <span className="text-[#38BDF8]">SPECIALIZATION: Vulnerability Research & Malware Analysis</span>
-          </div>
-        </div>
+        {/* 2-Column Split: Left = Terminal Bio Card, Right = Profile Tilt Card */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+          {/* Left Column: Glass Terminal Card */}
+          <div className="lg:col-span-7 flex flex-col justify-between p-6 sm:p-8 rounded-2xl border border-white/10 bg-[#0A0D14]/80 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.06)] relative overflow-hidden group">
+            {/* Top Terminal Bar */}
+            <div>
+              <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-6 font-mono text-xs">
+                <div className="flex items-center gap-2">
+                  <span className="w-3 h-3 rounded-full bg-red-500/80 inline-block" />
+                  <span className="w-3 h-3 rounded-full bg-yellow-500/80 inline-block" />
+                  <span className="w-3 h-3 rounded-full bg-green-500/80 inline-block" />
+                  <span className="ml-2 text-[#94A3B8] text-[11px]">sec-ops://researcher_dossier.sh</span>
+                </div>
+                <span className="text-cyan-400 text-[10px] uppercase font-bold tracking-wider">
+                  AUTH_VERIFIED
+                </span>
+              </div>
 
-        {/* Creed Inspection Trigger */}
-        <div className="w-full mb-16 p-6 md:p-8 rounded-sm border border-[#C8A24B]/30 bg-black/60 backdrop-blur-md flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex flex-col gap-1 text-center md:text-left">
-            <div className="flex items-center justify-center md:justify-start gap-2 font-mono text-xs text-[#C8A24B]">
-              <span className="w-2 h-2 rounded-full bg-[#C8A24B] animate-ping" />
-              <span className="font-bold">INVESTIGATIVE METHODOLOGY & PHILOSOPHY</span>
+              {/* Terminal Prompt & Bio */}
+              <div className="space-y-4">
+                <div className="flex items-center gap-2 font-mono text-xs text-cyan-400">
+                  <span className="text-violet-400 font-bold">ray@sec-lab:~$</span>
+                  <span>cat /etc/researcher_bio.md</span>
+                </div>
+                <p className="text-sm sm:text-base text-[#CBD5E1] leading-relaxed font-sans">
+                  {ABOUT_BIO}
+                </p>
+              </div>
             </div>
-            <p className="text-sm text-[#CCCCCC]">
-              Read the research philosophy, recon creed, and operational standards.
-            </p>
+
+            {/* Bottom Creed Trigger Button */}
+            <div className="mt-8 pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
+              <div className="font-mono text-xs text-[#94A3B8]">
+                <span className="text-emerald-400 font-bold">STATUS:</span> ACTIVE_RESEARCHER
+              </div>
+              <button
+                onClick={handleInspect}
+                onMouseEnter={playHover}
+                className="px-5 py-2.5 rounded-full border border-violet-500/40 hover:border-violet-400 bg-violet-500/10 hover:bg-violet-500/20 text-violet-300 font-mono text-xs font-bold uppercase tracking-wider transition-all cursor-pointer flex items-center gap-2 shadow-[0_0_15px_rgba(139,92,246,0.2)]"
+              >
+                <span>{isCreedOpen ? 'Close Methodology' : 'Read Investigative Creed'}</span>
+                <span>⚙</span>
+              </button>
+            </div>
           </div>
 
-          <div className="flex items-center gap-4">
-            <button
-              onClick={handleInspect}
-              onMouseEnter={playHover}
-              className="px-6 py-3 border border-[#C8A24B] bg-[#C8A24B]/10 hover:bg-[#C8A24B]/20 text-[#C8A24B] font-mono text-xs tracking-widest uppercase transition-all duration-300 rounded-sm cursor-pointer shadow-[0_0_15px_rgba(200,162,75,0.15)] hover:shadow-[0_0_25px_rgba(200,162,75,0.3)] flex items-center gap-2 font-bold"
-            >
-              <span>{isCreedOpen ? 'Viewing Methodology' : 'Read Investigative Creed'}</span>
-              <span>⚙</span>
-            </button>
+          {/* Right Column: Cyber-Noir Profile Card */}
+          <div className="lg:col-span-5 flex flex-col justify-between p-6 sm:p-8 rounded-2xl border border-white/10 bg-[#0A0D14]/80 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.06)] relative group">
+            {/* Ambient Corner Glow */}
+            <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-bl from-cyan-400/10 to-transparent rounded-full blur-2xl pointer-events-none" />
+
+            <div>
+              {/* Header with Monogram */}
+              <div className="flex items-center gap-4 mb-6">
+                <div className="relative flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-400 to-violet-600 p-[1px] shadow-[0_0_25px_rgba(34,211,238,0.3)]">
+                  <div className="w-full h-full rounded-2xl bg-[#05060A] flex items-center justify-center">
+                    <span className="font-heading font-extrabold text-2xl text-cyan-400">
+                      RAY
+                    </span>
+                  </div>
+                </div>
+                <div>
+                  <h3 className="font-heading font-bold text-xl text-[#F1F5F9]">
+                    Bhaveshkumar Parmar
+                  </h3>
+                  <span className="font-mono text-xs text-cyan-400">
+                    Cybersecurity Researcher
+                  </span>
+                </div>
+              </div>
+
+              {/* Education & Focus Chips */}
+              <div className="space-y-4 font-mono text-xs">
+                <div className="p-3.5 rounded-xl border border-white/5 bg-white/[0.02]">
+                  <span className="text-[#94A3B8] text-[10px] block uppercase mb-1">Degree & Alma Mater</span>
+                  <span className="text-[#F1F5F9] font-medium block">
+                    M.Sc. Cybersecurity & Forensic Science
+                  </span>
+                  <span className="text-cyan-400 text-[11px]">
+                    Gujarat University, Ahmedabad
+                  </span>
+                </div>
+
+                <div className="p-3.5 rounded-xl border border-white/5 bg-white/[0.02]">
+                  <span className="text-[#94A3B8] text-[10px] block uppercase mb-1">Primary Vectors</span>
+                  <div className="flex flex-wrap gap-1.5 mt-2">
+                    {['Vulnerability Research', 'Malware Analysis', 'Reverse Engineering', 'Digital Forensics'].map((tag) => (
+                      <span key={tag} className="px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-[11px] text-[#E2E8F0]">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom Verification Footer */}
+            <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between font-mono text-[11px] text-[#94A3B8]">
+              <span className="flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span>CVE Author (WPScan)</span>
+              </span>
+              <span className="text-violet-400">AHMEDABAD, IN</span>
+            </div>
           </div>
         </div>
 
-        {/* Creed Report Card Panel (When Open) */}
+        {/* Expandable Creed Panel */}
         {isCreedOpen && (
           <div
-            className={`w-full max-w-3xl bg-black/90 border border-[#C8A24B]/50 p-8 md:p-12 mb-16 rounded-sm shadow-2xl relative backdrop-blur-lg ${
-              reducedMotion ? '' : 'animate-[slideIn_0.6s_cubic-bezier(0.16,1,0.3,1)_forwards]'
+            className={`w-full max-w-4xl mx-auto p-8 sm:p-12 rounded-2xl border border-violet-500/40 bg-[#0A0D14]/95 backdrop-blur-2xl shadow-[0_12px_48px_rgba(0,0,0,0.8),0_0_30px_rgba(139,92,246,0.15)] relative ${
+              reducedMotion ? '' : 'animate-[slideIn_0.4s_ease-out]'
             }`}
-            role="document"
-            aria-labelledby="creed-title"
           >
             <button
-              onClick={handleClose}
-              className="absolute top-4 right-4 text-white/40 hover:text-white font-mono text-xl transition-colors cursor-pointer"
-              aria-label="Close report"
+              onClick={handleCloseCreed}
+              className="absolute top-6 right-6 text-white/50 hover:text-white font-mono text-xl transition-colors cursor-pointer w-8 h-8 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/10"
+              aria-label="Close creed panel"
             >
               ×
             </button>
 
-            <div className="mb-6 border-b border-[#C8A24B]/20 pb-4">
-              <span className="font-mono text-xs text-[#C8A24B] block mb-1 uppercase tracking-wider font-bold">
+            <div className="mb-6 border-b border-violet-500/20 pb-4">
+              <span className="font-mono text-xs text-violet-400 block mb-1 uppercase tracking-wider font-bold">
                 OPERATIONAL PRINCIPLES // ETHICAL RECONNAISSANCE
               </span>
-              <h3 id="creed-title" className="text-2xl font-bold tracking-tight text-bone">
+              <h3 className="font-heading text-2xl sm:text-3xl font-bold text-[#F1F5F9]">
                 {ABOUT_TITLE}
               </h3>
             </div>
 
-            <div className="space-y-6 text-[#CCCCCC] text-sm md:text-base leading-relaxed">
+            <div className="space-y-4 text-[#CBD5E1] text-sm sm:text-base leading-relaxed font-sans">
               {ABOUT_PARAGRAPHS.map((para, idx) => (
-                <RedactionBar key={idx}>
-                  <p>{para}</p>
-                </RedactionBar>
+                <p key={idx} className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
+                  {para}
+                </p>
               ))}
             </div>
 
-            <div className="mt-8 flex justify-between items-end border-t border-[#C8A24B]/20 pt-4 font-mono text-xs text-white/40">
-              <div>
-                <span>STATUS: EMPIRICALLY_VERIFIED</span>
-                <span className="block">STANDARDS: RESPONSIBLE_DISCLOSURE</span>
-              </div>
-              <span className="text-[#C8A24B] font-bold">ACTIVE_DISCLOSURE</span>
+            <div className="mt-8 flex flex-wrap justify-between items-center border-t border-white/10 pt-4 font-mono text-xs text-[#94A3B8]">
+              <span>STATUS: EMPIRICALLY_VERIFIED</span>
+              <span className="text-cyan-400 font-bold">STANDARDS: RESPONSIBLE_DISCLOSURE</span>
             </div>
           </div>
         )}
 
-        {/* 6 Research Domains Grid */}
-        <div className="w-full">
-          <div className="flex justify-between items-center mb-8 border-b border-white/10 pb-4">
+        {/* SECTION 3: PRIMARY RESEARCH DOMAINS BENTO GRID */}
+        <div id="domains" className="w-full pt-12">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-10 border-b border-white/10 pb-6 gap-4">
             <div>
-              <span className="font-mono text-xs text-[#8A5CF6] block uppercase tracking-widest">
-                CORE_COMPETENCIES
-              </span>
-              <h3 className="text-2xl font-bold text-bone">
+              <div className="inline-flex items-center gap-2 px-3 py-1 mb-2 rounded-full border border-cyan-400/30 bg-cyan-400/10">
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+                <span className="font-mono text-xs text-cyan-400 tracking-widest uppercase font-bold">
+                  02 // CORE COMPETENCIES
+                </span>
+              </div>
+              <h3 className="font-heading text-3xl sm:text-4xl font-bold text-[#F1F5F9]">
                 Primary Research Domains
               </h3>
             </div>
-            <span className="font-mono text-xs text-[#666666] hidden sm:inline">
-              [6 SPECIALIZED VECTORS]
+            <span className="font-mono text-xs text-[#94A3B8]">
+              [06 SPECIALIZED VECTORS]
             </span>
           </div>
 
+          {/* Bento Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {RESEARCH_DOMAINS.map((domain) => (
-              <div
-                key={domain.id}
-                onClick={() => {
-                  playClick();
-                  setSelectedDomain(domain);
-                }}
-                onMouseEnter={playHover}
-                className="group relative p-6 rounded-sm border border-white/10 hover:border-[#8A5CF6]/60 bg-black/40 hover:bg-black/70 transition-all duration-300 cursor-pointer flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex justify-between items-start mb-4">
-                    <span className="font-mono text-[10px] text-[#8A5CF6] tracking-wider uppercase">
-                      {domain.tag}
-                    </span>
-                    <span className="text-lg opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all">
-                      {domain.icon}
-                    </span>
-                  </div>
+            {RESEARCH_DOMAINS.map((domain, index) => {
+              // Accent color mapping for diverse cyber feel
+              const accentColor =
+                index === 0 ? 'cyan' :
+                index === 1 ? 'violet' :
+                index === 2 ? 'emerald' :
+                index === 3 ? 'amber' :
+                index === 4 ? 'sky' : 'rose';
 
-                  <h4 className="text-lg font-bold text-bone group-hover:text-white mb-1 transition-colors">
-                    {domain.title}
-                  </h4>
-                  <p className="font-mono text-xs text-[#888888] mb-4">
-                    {domain.subtitle}
-                  </p>
+              return (
+                <div
+                  key={domain.id}
+                  onClick={() => {
+                    playClick();
+                    setSelectedDomain(domain);
+                  }}
+                  onMouseEnter={playHover}
+                  className="group relative p-6 sm:p-7 rounded-2xl border border-white/10 hover:border-cyan-400/50 bg-[#0A0D14]/70 hover:bg-[#0A0D14]/90 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.4)] transition-all duration-300 cursor-pointer flex flex-col justify-between overflow-hidden"
+                >
+                  {/* Subtle Top-Right Ambient Glow */}
+                  <div className="absolute -top-12 -right-12 w-32 h-32 bg-cyan-400/5 group-hover:bg-cyan-400/15 rounded-full blur-2xl transition-all pointer-events-none" />
 
-                  <p className="text-xs text-[#AAAAAA] leading-relaxed mb-6 line-clamp-3">
-                    {domain.description}
-                  </p>
-                </div>
-
-                <div>
-                  <div className="flex flex-wrap gap-1.5 mb-4">
-                    {domain.tools.slice(0, 3).map((tool) => (
-                      <span
-                        key={tool}
-                        className="px-2 py-0.5 rounded-xs bg-white/5 border border-white/10 text-[10px] font-mono text-white/70"
-                      >
-                        {tool}
+                  <div>
+                    {/* Top Row: Tag & Icon */}
+                    <div className="flex justify-between items-start mb-4">
+                      <span className="font-mono text-[10px] text-cyan-400 tracking-wider uppercase font-bold px-2.5 py-1 rounded-full bg-cyan-400/10 border border-cyan-400/20">
+                        {domain.tag}
                       </span>
-                    ))}
-                    {domain.tools.length > 3 && (
-                      <span className="px-2 py-0.5 rounded-xs bg-white/5 border border-white/10 text-[10px] font-mono text-white/40">
-                        +{domain.tools.length - 3}
+                      <span className="text-2xl transform group-hover:scale-110 transition-transform">
+                        {domain.icon}
                       </span>
-                    )}
+                    </div>
+
+                    <h4 className="font-heading text-xl font-bold text-[#F1F5F9] group-hover:text-cyan-300 mb-1 transition-colors">
+                      {domain.title}
+                    </h4>
+                    <p className="font-mono text-xs text-[#94A3B8] mb-4">
+                      {domain.subtitle}
+                    </p>
+
+                    <p className="text-xs text-[#CBD5E1] leading-relaxed mb-6 line-clamp-3 font-sans">
+                      {domain.description}
+                    </p>
                   </div>
 
-                  <div className="pt-3 border-t border-white/10 flex justify-between items-center font-mono text-[10px] text-[#888888]">
-                    <span className="text-[#38BDF8]">{domain.metrics}</span>
-                    <span className="group-hover:translate-x-1 transition-transform text-[#8A5CF6]">
-                      Details →
-                    </span>
+                  <div>
+                    {/* Tool Badges */}
+                    <div className="flex flex-wrap gap-1.5 mb-5">
+                      {domain.tools.slice(0, 3).map((tool) => (
+                        <span
+                          key={tool}
+                          className="px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-[10px] font-mono text-[#E2E8F0]"
+                        >
+                          {tool}
+                        </span>
+                      ))}
+                      {domain.tools.length > 3 && (
+                        <span className="px-2 py-1 rounded-md bg-white/5 border border-white/10 text-[10px] font-mono text-[#94A3B8]">
+                          +{domain.tools.length - 3}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Bottom Status Row */}
+                    <div className="pt-3 border-t border-white/10 flex justify-between items-center font-mono text-[11px] text-[#94A3B8]">
+                      <span className="text-cyan-400 font-medium">{domain.metrics}</span>
+                      <span className="text-violet-400 group-hover:translate-x-1 transition-transform font-bold flex items-center gap-1">
+                        Details →
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 
         {/* Domain Detail Modal */}
         {selectedDomain && (
-          <div 
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md"
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#05060A]/85 backdrop-blur-xl"
             data-lenis-prevent="true"
           >
-            <div 
-              className="relative w-full max-w-xl max-h-[85vh] overflow-y-auto overscroll-contain p-8 rounded-sm border border-[#8A5CF6]/50 bg-[#0A0B0D] shadow-2xl text-bone animate-[slideIn_0.3s_ease-out] custom-scrollbar"
+            <div
+              className="relative w-full max-w-xl max-h-[85vh] overflow-y-auto overscroll-contain p-6 sm:p-8 rounded-2xl border border-cyan-400/40 bg-[#0A0D14] shadow-2xl text-[#F1F5F9] animate-[slideIn_0.3s_ease-out] custom-scrollbar"
               data-lenis-prevent="true"
               onWheel={(e) => e.stopPropagation()}
             >
@@ -254,33 +335,34 @@ export default function Layer2_Watchmaker({
                   playClick();
                   setSelectedDomain(null);
                 }}
-                className="absolute top-4 right-4 text-white/40 hover:text-white font-mono text-xl cursor-pointer"
+                className="absolute top-5 right-5 text-white/50 hover:text-white font-mono text-lg cursor-pointer w-8 h-8 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/10"
+                aria-label="Close dialog"
               >
                 ×
               </button>
 
               <div className="flex items-center gap-3 mb-4">
-                <span className="text-2xl">{selectedDomain.icon}</span>
+                <span className="text-3xl">{selectedDomain.icon}</span>
                 <div>
-                  <span className="font-mono text-xs text-[#8A5CF6] block uppercase">
+                  <span className="font-mono text-xs text-cyan-400 block uppercase font-bold">
                     {selectedDomain.tag}
                   </span>
-                  <h3 className="text-2xl font-bold">{selectedDomain.title}</h3>
+                  <h3 className="font-heading text-2xl font-bold">{selectedDomain.title}</h3>
                 </div>
               </div>
 
-              <p className="text-sm text-[#CCCCCC] leading-relaxed mb-6">
+              <p className="text-sm text-[#CBD5E1] leading-relaxed mb-6 font-sans">
                 {selectedDomain.description}
               </p>
 
               <div className="mb-6">
-                <h4 className="font-mono text-xs text-[#888888] uppercase tracking-wider mb-2 border-b border-white/10 pb-1">
+                <h4 className="font-mono text-xs text-[#94A3B8] uppercase tracking-wider mb-3 border-b border-white/10 pb-1 font-bold">
                   Key Focus Areas
                 </h4>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono text-[#CCCCCC]">
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs font-mono text-[#E2E8F0]">
                   {selectedDomain.focusAreas.map((area, i) => (
-                    <li key={i} className="flex items-center gap-2">
-                      <span className="text-[#8A5CF6]">▸</span>
+                    <li key={i} className="flex items-center gap-2 p-2 rounded-lg bg-white/[0.03] border border-white/5">
+                      <span className="text-cyan-400">▸</span>
                       <span>{area}</span>
                     </li>
                   ))}
@@ -288,14 +370,14 @@ export default function Layer2_Watchmaker({
               </div>
 
               <div>
-                <h4 className="font-mono text-xs text-[#888888] uppercase tracking-wider mb-2 border-b border-white/10 pb-1">
+                <h4 className="font-mono text-xs text-[#94A3B8] uppercase tracking-wider mb-3 border-b border-white/10 pb-1 font-bold">
                   Primary Tooling Suite
                 </h4>
                 <div className="flex flex-wrap gap-2">
                   {selectedDomain.tools.map((tool) => (
                     <span
                       key={tool}
-                      className="px-2.5 py-1 rounded-sm bg-white/5 border border-white/15 text-xs font-mono text-white/90"
+                      className="px-3 py-1.5 rounded-lg bg-white/5 border border-white/15 text-xs font-mono text-cyan-300 font-medium"
                     >
                       {tool}
                     </span>
@@ -306,13 +388,6 @@ export default function Layer2_Watchmaker({
           </div>
         )}
       </div>
-
-      <style dangerouslySetInnerHTML={{__html: `
-        @keyframes slideIn {
-          0% { transform: translateY(20px); opacity: 0; }
-          100% { transform: translateY(0); opacity: 1; }
-        }
-      `}} />
     </section>
   );
 }
