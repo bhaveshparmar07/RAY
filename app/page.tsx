@@ -1,8 +1,12 @@
 'use client';
 
 import React, { useState } from 'react';
+import dynamic from 'next/dynamic';
 import Preloader from '@/src/components/Preloader';
 import Hero from '@/src/components/Hero';
+import Manifesto from '@/src/components/Manifesto';
+
+const ResearchDomains = dynamic(() => import('@/src/components/ResearchDomains'), { ssr: false });
 
 export default function Page() {
   const [preloaderFinished, setPreloaderFinished] = useState(false);
@@ -16,6 +20,12 @@ export default function Page() {
 
       {/* Section 1: Hero */}
       <Hero />
+
+      {/* Section 2: Manifesto — Pinned word-by-word scrub */}
+      <Manifesto />
+
+      {/* Section 3: Research Domains — Horizontal scroll, generative visuals */}
+      <ResearchDomains />
     </main>
   );
 }
