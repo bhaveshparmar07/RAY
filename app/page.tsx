@@ -9,6 +9,8 @@ import Manifesto from '@/src/components/Manifesto';
 const ResearchDomains = dynamic(() => import('@/src/components/ResearchDomains'), { ssr: false });
 const Arsenal = dynamic(() => import('@/src/components/Arsenal'), { ssr: false });
 const CVEShowpiece = dynamic(() => import('@/src/components/CVEShowpiece'), { ssr: false });
+const Credentials = dynamic(() => import('@/src/components/Credentials'), { ssr: false });
+const ContactTerminal = dynamic(() => import('@/src/components/ContactTerminal'), { ssr: false });
 
 export default function Page() {
   const [preloaderFinished, setPreloaderFinished] = useState(false);
@@ -34,6 +36,12 @@ export default function Page() {
 
       {/* Section 5: Published CVE Showpiece — Logic Flaws & Exploit Chains */}
       <CVEShowpiece />
+
+      {/* Section 6: Verified Credentials & Publications Dossier */}
+      <Credentials />
+
+      {/* Section 7: Secure Disclosure & Transmission Terminal */}
+      <ContactTerminal />
     </main>
   );
 }
