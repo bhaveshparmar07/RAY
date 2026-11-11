@@ -15,15 +15,15 @@ export default function Credentials() {
         <div>
           <div className="font-mono text-xs text-[#9A9890] flex items-center gap-2 mb-3">
             <span className="text-[#C8FF2E] font-bold">// 06</span>
-            <span>VERIFIED DOSSIER & CITATIONS</span>
+            <span>RESEARCH DOSSIER & CREDENTIALS</span>
             <span className="text-[#62605B]">|</span>
-            <span>ACADEMIC_PEER_REVIEWS</span>
+            <span>PUBLICATIONS_AND_SYSTEMS</span>
           </div>
           <h2 className="font-sans text-4xl sm:text-6xl font-black text-[#ECE9E2] tracking-tighter">
-            Verified <span className="font-serif italic font-normal text-[#C8FF2E]">Scholarship</span> & Tools
+            Publications, <span className="font-serif italic font-normal text-[#C8FF2E]">Credentials</span> & Systems
           </h2>
           <p className="font-sans text-sm sm:text-base text-[#9A9890] max-w-2xl mt-3">
-            Peer-reviewed research, first-author digital forensic methodologies, international offensive security selection, and engineered tools.
+            Peer-reviewed research, first-author digital forensic papers, verified industry certifications, and custom security tooling.
           </p>
         </div>
 
