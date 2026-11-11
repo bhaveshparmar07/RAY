@@ -7,6 +7,8 @@ import Hero from '@/src/components/Hero';
 import Manifesto from '@/src/components/Manifesto';
 
 const ResearchDomains = dynamic(() => import('@/src/components/ResearchDomains'), { ssr: false });
+const Arsenal = dynamic(() => import('@/src/components/Arsenal'), { ssr: false });
+const CVEShowpiece = dynamic(() => import('@/src/components/CVEShowpiece'), { ssr: false });
 
 export default function Page() {
   const [preloaderFinished, setPreloaderFinished] = useState(false);
@@ -26,6 +28,12 @@ export default function Page() {
 
       {/* Section 3: Research Domains — Horizontal scroll, generative visuals */}
       <ResearchDomains />
+
+      {/* Section 4: Arsenal — Physics playground & equipment rig */}
+      <Arsenal />
+
+      {/* Section 5: Published CVE Showpiece — Logic Flaws & Exploit Chains */}
+      <CVEShowpiece />
     </main>
   );
 }
